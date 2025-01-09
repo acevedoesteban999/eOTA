@@ -2,6 +2,18 @@
 
 volatile bool OTA_BOOL = false;
 
+
+void delayed_restart_task(void *pvParameter) {
+    // Retraso de 1 segundo (1000 ms)
+    vTaskDelay(pdMS_TO_TICKS(1000));
+
+    // Reiniciar el dispositivo
+    esp_restart();
+
+    // Terminar la tarea
+    vTaskDelete(NULL);
+}
+
 esp_err_t ota_post_handler(httpd_req_t *req) {
     ESP_LOGI("OTA", "OTA update started");
     OTA_BOOL = true;
@@ -61,6 +73,6 @@ esp_err_t ota_post_handler(httpd_req_t *req) {
     ESP_LOGI("OTA", "OTA update successful, rebooting...");
     httpd_resp_sendstr(req, "OTA update successful, rebooting...");
     OTA_BOOL = false;
-    esp_restart();
+    xTaskCreate(&delayed_restart_task, "delayed_restart", 2048, NULL, 5, NULL);
     return ESP_OK;
 }

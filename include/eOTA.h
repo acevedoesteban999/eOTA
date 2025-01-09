@@ -5,12 +5,23 @@
 
 #define MIN(a, b) ((a) < (b) ? (a) : (b))
 
-#define OTA_HANDLERS(handler) \
-    {{"/ota.html", HTTP_GET , handler , NULL}, true, {ota_html_asm_start,ota_html_asm_end,""}}, \
-    {{"/ota", HTTP_POST, ota_post_handler, NULL}, false, {}}
+
+//TODO CHECK_HANDLER
+
+#define EOTA_HANDLERS(handler_html,handler_statics) \
+    {{"/ota.html", HTTP_GET , handler_html , NULL}, true, {ota_html_asm_start,ota_html_asm_end,""}}, \
+    {{"/css/ota.css", HTTP_GET , handler_statics , NULL}, true, {ota_css_asm_start,ota_css_asm_end,"text/css"}}, \
+    {{"/js/ota.js", HTTP_GET , handler_statics , NULL}, true, {ota_js_asm_start,ota_js_asm_end,"text/javascript"}}, \
+    {{"/ota_update", HTTP_POST, ota_post_handler, NULL}, false, {}}
 
 extern const char ota_html_asm_start[] asm("_binary_ota_html_start");
 extern const char ota_html_asm_end[] asm("_binary_ota_html_end");
+
+extern const char ota_css_asm_start[] asm("_binary_ota_css_start");
+extern const char ota_css_asm_end[] asm("_binary_ota_css_end");
+
+extern const char ota_js_asm_start[] asm("_binary_ota_js_start");
+extern const char ota_js_asm_end[] asm("_binary_ota_js_end");
 extern volatile bool OTA_BOOL;
 
 esp_err_t ota_post_handler(httpd_req_t *req);

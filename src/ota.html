@@ -1,51 +1,21 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>OTA Update</title>
-</head>
-<body>
-    <h1>OTA Update</h1>
-    <form id="otaForm">
-        <input type="file" id="firmware" required>
-        <button type="submit">Update Firmware</button>
-    </form>
-
-    <script>
-        document.getElementById('otaForm').addEventListener('submit', async (event) => {
-            event.preventDefault();
-
-            const fileInput = document.getElementById('firmware');
-            const file = fileInput.files[0];
-
-            if (!file) {
-                alert('Please select a firmware file!');
-                return;
-            }
-
-            try {
-               
-                const fileData = await file.arrayBuffer();
-
-                
-                const response = await fetch('/ota', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/octet-stream',
-                    },
-                    body: fileData, 
-                });
-
-                if (response.ok) {
-                    alert('OTA Update successful!');
-                } else {
-                    const errorMessage = await response.text();
-                    alert(`OTA Update failed: ${response.status} ${errorMessage}`);
-                }
-            } catch (error) {
-                console.error('Error during OTA Update:', error);
-                alert('Error during OTA Update. See console for details.');
-            }
-        });
-    </script>
-</body>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./css/ota.css">
+        <link rel="icon" href="data:,">
+        <title>OTA Update</title>
+    </head>
+    <body>
+        <div class="container">
+            <h1>OTA Update</h1>
+            <form id="otaForm">
+                <input type="file" id="firmware" required>
+                <button type="submit">Update Firmware</button>
+            </form>
+            <div id="alertMessage" class="alert" style="display: none;"></div>
+        </div>
+        <script src="./js/ota.js"></script>
+    </body>
 </html>

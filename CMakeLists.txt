@@ -9,5 +9,6 @@ idf_component_register(
         "src/ota.html"
     
     REQUIRES 
+        esp_http_server
         app_update
 )

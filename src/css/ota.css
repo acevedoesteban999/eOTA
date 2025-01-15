@@ -57,6 +57,12 @@ button:hover {
     background-color: #28a745;
     color: white;
 }
+
+.alert.warning {
+    background-color: #bbbd24;
+    color: black;
+}
+
 .alert.error {
     background-color: #dc3545;
     color: white;

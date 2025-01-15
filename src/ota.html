@@ -14,7 +14,11 @@
                 <input type="file" id="firmware" required>
                 <button type="submit">Update Firmware</button>
             </form>
-            <div id="alertMessage" class="alert" style="display: none;"></div>
+            
+            <div id="messageContainerID" class="alert">
+                <h3 id="messageID" ></h3>
+                <div id="spinerID" class="spinner" style="display: none;"></div>
+            </div>
         </div>
         <script src="./js/ota.js"></script>
     </body>

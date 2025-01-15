@@ -1,7 +1,11 @@
+const messageContainer = document.getElementById('messageContainerID');
+const message = document.getElementById('messageID');
+const spiner = document.getElementById('spinerID');
 
-document.getElementById('otaForm').addEventListener('submit', async (event) => {
+
+document.getElementById('otaForm').addEventListener('submit', (event) => {
     event.preventDefault();
-
+    
     const fileInput = document.getElementById('firmware');
     const file = fileInput.files[0];
 
@@ -14,34 +18,37 @@ document.getElementById('otaForm').addEventListener('submit', async (event) => {
         alert('Please select a .bin file!');
         return;
     }
-
-    try {
-        const fileData = await file.arrayBuffer();
-
-        const response = await fetch('/ota_update', {
+    messageContainer.className = 'alert loading';
+    message.textContent = `OTA Update in Progress ... `;
+    spiner.style.display = "block";
+    file.arrayBuffer().then(fileData => {
+        fetch('/ota_update', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/octet-stream',
             },
             body: fileData, 
+        }).then(response => {
+            response.text().then(data => {
+                if (response.ok) {
+                    messageContainer.className = 'alert success';
+                    message.textContent = data;
+                    spiner.style.display = "none";
+                    setTimeout(() => {
+                        window.location.href = './';
+                    }, 1000);
+                } else {
+                    console.error(`OTA Update failed: ${response.status} ${data}`)
+                    messageContainer.className = 'alert error';
+                    message.textContent = `OTA Update failed: ${response.status} ${data}`;
+                    spiner.style.display = "none";
+                }
+            })
+        }).catch(error => {
+            console.error('Error during OTA Update:', error);
+            messageContainer.className = 'alert error';
+            message.textContent = 'Error during OTA Update. See console for details.';
+            spiner.style.display = "none";
         });
-
-        const alertMessage = document.getElementById('alertMessage');
-        if (response.ok) {
-            alertMessage.textContent = 'OTA Update successful!';
-            alertMessage.className = 'alert success';
-            alertMessage.style.display = 'block';
-        } else {
-            const errorMessage = await response.text();
-            alertMessage.textContent = `OTA Update failed: ${response.status} ${errorMessage}`;
-            alertMessage.className = 'alert error';
-            alertMessage.style.display = 'block';
-        }
-    } catch (error) {
-        console.error('Error during OTA Update:', error);
-        const alertMessage = document.getElementById('alertMessage');
-        alertMessage.textContent = 'Error during OTA Update. See console for details.';
-        alertMessage.className = 'alert error';
-        alertMessage.style.display = 'block';
-    }
+    });
 });

@@ -35,7 +35,7 @@ document.getElementById('otaForm').addEventListener('submit', (event) => {
                     message.textContent = data;
                     spiner.style.display = "none";
                     setTimeout(() => {
-                        location.reload(true);
+                        window.location.href = './';
                     }, 1000);
                 } else {
                     console.error(`OTA Update failed: ${response.status} ${data}`)

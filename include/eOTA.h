@@ -13,7 +13,7 @@
     {{"/ota.html", HTTP_GET , handler_html , NULL}, true, {ota_html_asm_start,ota_html_asm_end,"",NULL}}, \
     {{"/css/ota.css", HTTP_GET , handler_statics , NULL}, true, {ota_css_asm_start,ota_css_asm_end,"text/css",NULL}}, \
     {{"/js/ota.js", HTTP_GET , handler_statics , NULL}, true, {ota_js_asm_start,ota_js_asm_end,"text/javascript",NULL}}, \
-    {{"/ota_update", HTTP_POST, concidional_funtion, NULL}, true, {.uri_handler_function = ota_post_handler}}, \
+    {{"/ota_update", HTTP_POST, concidional_funtion, NULL}, true, {.uri_handler_function = ota_post_handler}} \
 
 extern const char ota_html_asm_start[] asm("_binary_ota_html_start");
 extern const char ota_html_asm_end[] asm("_binary_ota_html_end");

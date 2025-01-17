@@ -1,12 +1,27 @@
 const messageContainer = document.getElementById("messageContainerID");
 const message = document.getElementById("messageID");
 const spiner = document.getElementById("spinerID");
+const messageFile = document.getElementById("messageFileID");
+const buttonSubmit = document.getElementById("buttonSubmitID");
+const inputFile = document.getElementById("inputFileID");
+
+document.getElementById("inputFileID").addEventListener("change", (event) => {
+  const file = event.target.files[0];
+  messageFile.innerHTML =
+    "<span style='color: black !important'>File: </span>" + file.name;
+  if (file.name.endsWith(".bin")) {
+    messageFile.style.color = "green";
+    buttonSubmit.disabled = false;
+  } else {
+    messageFile.style.color = "red";
+    buttonSubmit.disabled = true;
+  }
+});
 
 document.getElementById("otaForm").addEventListener("submit", (event) => {
   event.preventDefault();
 
-  const fileInput = document.getElementById("firmware");
-  const file = fileInput.files[0];
+  file = inputFile.files[0];
 
   if (!file) {
     alert("Please select a firmware file!");

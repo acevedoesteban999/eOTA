@@ -3,23 +3,47 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/ota.min.css" />
+    <link rel="stylesheet" href="./css/styles.min.css" />
+    <link rel="stylesheet" href="./css/milligram/milligram.min.css" />
+    <link rel="stylesheet" href="./css/milligram/normalize.min.css" />
     <link rel="icon" href="data:," />
     <title>OTA Update</title>
   </head>
   <body>
-    <div class="container">
-      <h1>OTA Update</h1>
-      <form id="otaForm">
-        <input type="file" id="firmware" required />
-        <button type="submit">Update Firmware</button>
-      </form>
-
-      <div id="messageContainerID" class="alert">
-        <h3 id="messageID"></h3>
-        <div id="spinerID" class="spinner" style="display: none"></div>
+    <div id="ajax-header"></div>
+    <div class="container-f container-a-c">
+      <div class="container container-j-c">
+        <div class="row">
+          <div class="column">
+            <h1>OTA Update</h1>
+            <form id="otaForm">
+              <div class="row">
+                <div class="column">
+                  <label for="inputFileID" class="custom-file-upload">
+                    Select File
+                  </label>
+                  <input id="inputFileID" class="file-upload" type="file" />
+                  <h5 id="messageFileID"></h5>
+                  <br />
+                  <button type="submit" disabled id="buttonSubmitID">
+                    Update Firmware
+                  </button>
+                  <div id="messageContainerID" class="alert">
+                    <h3 id="messageID"></h3>
+                    <div
+                      id="spinerID"
+                      class="spinner"
+                      style="display: none"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
     <script src="./js/ota.min.js"></script>
+    <script src="./js/index.min.js"></script>
   </body>
 </html>

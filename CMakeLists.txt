@@ -7,7 +7,6 @@ idf_component_register(
     
     EMBED_FILES
         "src/ota.min.html"
-        "src/css/ota.min.css"
         "src/js/ota.min.js"
     
     REQUIRES 

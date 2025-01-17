@@ -19,22 +19,20 @@
             <form id="otaForm">
               <div class="row">
                 <div class="column">
-                  <label for="inputFileID" class="custom-file-upload">
-                    Select File
-                  </label>
+                  <div id="dropZoneID" class="drop-zone">
+                    <label for="inputFileID">
+                      <h4>Select File</h4>
+                    </label>
+                    <h5 id="messageFileID"></h5>
+                  </div>
                   <input id="inputFileID" class="file-upload" type="file" />
-                  <h5 id="messageFileID"></h5>
                   <br />
                   <button type="submit" disabled id="buttonSubmitID">
                     Update Firmware
                   </button>
-                  <div id="messageContainerID" class="alert">
+                  <div id="messageContainerID" class="inline">
                     <h3 id="messageID"></h3>
-                    <div
-                      id="spinerID"
-                      class="spinner"
-                      style="display: none"
-                    ></div>
+                    <div id="spinerID" class="spinner d-none"></div>
                   </div>
                 </div>
               </div>

@@ -10,9 +10,9 @@
 //TODO CHECK_HANDLER
 
 #define EOTA_HANDLERS(concidional_funtion,handler_html,handler_statics) \
-    {{"/ota.html", HTTP_GET , handler_html , NULL}, true, {ota_html_asm_start,ota_html_asm_end,"",NULL,NULL}}, \
-    {{"/css/ota.css", HTTP_GET , handler_statics , NULL}, true, {ota_css_asm_start,ota_css_asm_end,"text/css",NULL,NULL}}, \
-    {{"/js/ota.js", HTTP_GET , handler_statics , NULL}, true, {ota_js_asm_start,ota_js_asm_end,"text/javascript",NULL,NULL}}, \
+    {{"/ota.min.html", HTTP_GET , handler_html , NULL}, true, {ota_html_asm_start,ota_html_asm_end,"",NULL,NULL}}, \
+    {{"/css/ota.min.css", HTTP_GET , handler_statics , NULL}, true, {ota_css_asm_start,ota_css_asm_end,"text/css",NULL,NULL}}, \
+    {{"/js/ota.min.js", HTTP_GET , handler_statics , NULL}, true, {ota_js_asm_start,ota_js_asm_end,"text/javascript",NULL,NULL}}, \
     {{"/ota_update", HTTP_POST, concidional_funtion, NULL}, true, {.uri_execution_function = ota_post_handler}} \
 
 extern const char ota_html_asm_start[] asm("_binary_ota_html_start");

@@ -6,9 +6,9 @@ idf_component_register(
         "include"
     
     EMBED_FILES
-        "src/ota.html"
-        "src/css/ota.css"
-        "src/js/ota.js"
+        "src/ota.min.html"
+        "src/css/ota.min.css"
+        "src/js/ota.min.js"
     
     REQUIRES 
         esp_http_server

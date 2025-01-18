@@ -65,7 +65,7 @@ document.getElementById("otaForm").addEventListener("submit", (event) => {
   }
   messageContainer.className = "alert loading";
   message.style.color = "";
-  message.textContent = `OTA Update in Progress ... `;
+  message.textContent = "Update in Progress ... ";
   spiner.style.display = "block";
   file.arrayBuffer().then((fileData) => {
     fetch("/ota_update", {
@@ -78,7 +78,7 @@ document.getElementById("otaForm").addEventListener("submit", (event) => {
       .then((response) => {
         if (!response.ok)
           throw new Error(response.status + " " + response.statusText);
-        else response.text();
+        else return response.text();
       })
       .then((data) => {
         messageContainer.className = "alert success";

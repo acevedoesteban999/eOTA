@@ -64,6 +64,7 @@ document.getElementById("otaForm").addEventListener("submit", (event) => {
     return;
   }
   messageContainer.className = "alert loading";
+  message.style.color = "";
   message.textContent = `OTA Update in Progress ... `;
   spiner.style.display = "block";
   file.arrayBuffer().then((fileData) => {
@@ -81,6 +82,7 @@ document.getElementById("otaForm").addEventListener("submit", (event) => {
       })
       .then((data) => {
         messageContainer.className = "alert success";
+        message.style.color = "white";
         message.textContent = data;
         spiner.style.display = "none";
         setTimeout(() => {
@@ -88,8 +90,9 @@ document.getElementById("otaForm").addEventListener("submit", (event) => {
         }, 1000);
       })
       .catch((error) => {
-        messageContainer.className = "alert success";
+        messageContainer.className = "alert error";
         message.textContent = error;
+        message.style.color = "white";
         spiner.style.display = "none";
       });
   });

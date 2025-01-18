@@ -75,27 +75,21 @@ document.getElementById("otaForm").addEventListener("submit", (event) => {
       body: fileData,
     })
       .then((response) => {
-        response.text().then((data) => {
-          if (response.ok) {
-            messageContainer.className = "alert success";
-            message.textContent = data;
-            spiner.style.display = "none";
-            setTimeout(() => {
-              window.location.href = "./";
-            }, 1000);
-          } else {
-            console.error(`OTA Update failed: ${response.status} ${data}`);
-            messageContainer.className = "alert error";
-            message.textContent = `OTA Update failed: ${response.status} ${data}`;
-            spiner.style.display = "none";
-          }
-        });
+        if (!response.ok)
+          throw new Error(response.status + " " + response.statusText);
+        else response.text();
+      })
+      .then((data) => {
+        messageContainer.className = "alert success";
+        message.textContent = data;
+        spiner.style.display = "none";
+        setTimeout(() => {
+          window.location.href = "./";
+        }, 1000);
       })
       .catch((error) => {
-        console.error("Error during OTA Update:", error);
-        messageContainer.className = "alert error";
-        message.textContent =
-          "Error during OTA Update. See console for details.";
+        messageContainer.className = "alert success";
+        message.textContent = error;
         spiner.style.display = "none";
       });
   });

@@ -63,10 +63,11 @@ document.getElementById("otaForm").addEventListener("submit", (event) => {
     alert("Please select a .bin file!");
     return;
   }
-  messageContainer.className = "alert loading";
+  messageContainer.className = "b b-sc px-5";
   message.style.color = "";
-  message.textContent = "Update in Progress ... ";
+  message.textContent = "Update in Progress...";
   spiner.style.display = "block";
+  buttonSubmit.disabled = true;
   file.arrayBuffer().then((fileData) => {
     fetch("/ota_update", {
       method: "POST",
@@ -81,7 +82,7 @@ document.getElementById("otaForm").addEventListener("submit", (event) => {
         else return response.text();
       })
       .then((data) => {
-        messageContainer.className = "alert success";
+        messageContainer.className = "b b-ss px-5";
         message.style.color = "white";
         message.textContent = data;
         spiner.style.display = "none";
@@ -90,7 +91,8 @@ document.getElementById("otaForm").addEventListener("submit", (event) => {
         }, 1000);
       })
       .catch((error) => {
-        messageContainer.className = "alert error";
+        buttonSubmit.disabled = false;
+        messageContainer.className = "b b-dg px-5";
         message.textContent = error;
         message.style.color = "white";
         spiner.style.display = "none";

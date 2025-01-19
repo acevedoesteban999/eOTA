@@ -63,7 +63,7 @@ document.getElementById("otaForm").addEventListener("submit", (event) => {
     alert("Please select a .bin file!");
     return;
   }
-  messageContainer.className = "b b-sc px-5";
+  messageContainer.className = "bd bd-sc px-5";
   message.style.color = "";
   message.textContent = "Update in Progress...";
   spiner.style.display = "block";
@@ -82,7 +82,7 @@ document.getElementById("otaForm").addEventListener("submit", (event) => {
         else return response.text();
       })
       .then((data) => {
-        messageContainer.className = "b b-ss px-5";
+        messageContainer.className = "bd bd-ss px-5";
         message.style.color = "white";
         message.textContent = data;
         spiner.style.display = "none";
@@ -92,7 +92,7 @@ document.getElementById("otaForm").addEventListener("submit", (event) => {
       })
       .catch((error) => {
         buttonSubmit.disabled = false;
-        messageContainer.className = "b b-dg px-5";
+        messageContainer.className = "bd bd-dg px-5";
         message.textContent = error;
         message.style.color = "white";
         spiner.style.display = "none";

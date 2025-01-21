@@ -63,9 +63,8 @@ document.getElementById("otaForm").addEventListener("submit", (event) => {
     alert("Please select a .bin file!");
     return;
   }
-  messageContainer.className = "bd bd-sc px-1";
+  messageContainer.className = "bd px-1";
   message.style.color = "";
-  message.textContent = "Update in Progress...";
   spiner.style.display = "block";
   buttonSubmit.disabled = true;
   file.arrayBuffer().then((fileData) => {

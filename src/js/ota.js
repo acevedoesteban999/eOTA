@@ -1,10 +1,9 @@
-const messageContainer = document.getElementById("messageContainerID");
-const message = document.getElementById("messageID");
-const spiner = document.getElementById("spinerID");
 const messageFile = document.getElementById("messageFileID");
 const buttonSubmit = document.getElementById("buttonSubmitID");
 const inputFile = document.getElementById("inputFileID");
 const dropZone = document.getElementById("dropZoneID");
+const msid = document.getElementById("msid");
+const mbtid = document.getElementById("mbtid");
 
 dropZone.addEventListener("click", () => {
   inputFile.click();
@@ -63,10 +62,9 @@ document.getElementById("otaForm").addEventListener("submit", (event) => {
     alert("Please select a .bin file!");
     return;
   }
-  messageContainer.className = "bd px-1";
-  message.style.color = "";
-  spiner.style.display = "block";
-  buttonSubmit.disabled = true;
+  msid.style.display = "block";
+  mbtid.style.display = "none";
+  sM("", "");
   file.arrayBuffer().then((fileData) => {
     fetch("/ota_update", {
       method: "POST",
@@ -81,20 +79,16 @@ document.getElementById("otaForm").addEventListener("submit", (event) => {
         else return response.text();
       })
       .then((data) => {
-        messageContainer.className = "bd bd-ss px-1";
-        message.style.color = "white";
-        message.textContent = data;
-        spiner.style.display = "none";
+        msid.style.display = "none";
+        sM("h4 bd bd-ss my-3", data);
         setTimeout(() => {
           window.location.href = "./";
         }, 1000);
       })
       .catch((error) => {
-        buttonSubmit.disabled = false;
-        messageContainer.className = "bd bd-dg px-1";
-        message.textContent = error;
-        message.style.color = "white";
-        spiner.style.display = "none";
+        msid.style.display = "none";
+        mbtid.style.display = "block";
+        sM("h4 bd bd-dg my-3", error);
       });
   });
 });

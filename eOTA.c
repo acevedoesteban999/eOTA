@@ -61,7 +61,7 @@ esp_err_t ota_post_handler(httpd_req_t *req) {
         return err;
     }
 
-    httpd_resp_sendstr(req, "OTA update successful, rebooting...");
+    httpd_resp_sendstr(req, "OTA update successful. Rebooting...");
     xTaskCreate(&_ota_delayed_restart_task, "delayed_restart", 2048, NULL, 5, NULL);
     return ESP_OK;
 }

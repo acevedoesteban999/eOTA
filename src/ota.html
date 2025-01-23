@@ -9,6 +9,23 @@
     <title>OTA Update</title>
   </head>
   <body>
+    <!-- MODAL -->
+    <div id="mbid" class="m-b">
+      <div class="m c">
+        <div class="r j-c">
+          <div class="h5" id="mtid"></div>
+        </div>
+        <div class="r j-c">
+          <div id="msid" class="sp"></div>
+        </div>
+        <div class="r j-c my-1">
+          <button id="mbtid" class="btn btn-sc d-n" onclick="cM()">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- HEADER -->
     <div id="ajax-header"></div>
     <main class="c-f">
       <div class="c c-75 sh">
@@ -30,18 +47,6 @@
               >
                 Update Firmware
               </button>
-              <div class="r my-2 j-c">
-                <div class="cl-10">
-                  <div id="messageContainerID">
-                    <div class="r">
-                      <div class="h5 my-1" id="messageID"></div>
-                    </div>
-                    <div class="r j-c">
-                      <div id="spinerID" class="sp d-n j-c my-1"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </form>
           </div>
         </div>

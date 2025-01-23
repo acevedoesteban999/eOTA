@@ -62,8 +62,8 @@ document.getElementById("otaForm").addEventListener("submit", (event) => {
     alert("Please select a .bin file!");
     return;
   }
-  msid.style.display = "block";
-  mbtid.style.display = "none";
+  s(msid);
+  h(mbtid);
   sM("", "");
   file.arrayBuffer().then((fileData) => {
     fetch("/ota_update", {
@@ -79,15 +79,15 @@ document.getElementById("otaForm").addEventListener("submit", (event) => {
         else return response.text();
       })
       .then((data) => {
-        msid.style.display = "none";
+        h(msid);
         sM("h4 bd bd-ss my-3", data);
         setTimeout(() => {
           window.location.href = "./";
         }, 1000);
       })
       .catch((error) => {
-        msid.style.display = "none";
-        mbtid.style.display = "block";
+        h(msid);
+        s(mbtid);
         sM("h4 bd bd-dg my-3", error);
       });
   });
